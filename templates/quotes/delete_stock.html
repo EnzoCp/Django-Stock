@@ -1,0 +1,23 @@
+{% extends 'quotes/base.html' %}
+{% block title %}Delete Stock{% endblock %}
+
+{% block content %}
+    <div style="display: flex; flex-direction: row" class="container text-center">
+        {% if tickers %}
+        {% for ticker in tickers %}
+    <div style="display: flex; flex-direction: row; justify-content: space-evenly" class="container">
+    {{ ticker }} - <form method="POST" action="{% url 'delete' ticker.id %}">
+                {% csrf_token %}
+                <button style="margin-left: 5px" class="btn btn-sm btn-danger" type="submit">
+                    Delete Stock
+                </button>
+                </form>
+    |
+    </div>
+
+    {% endfor %}
+                </div>
+    {% else %}
+    <h1 class="text-center">You dont have any stocks</h1>
+    {% endif %}
+{% endblock %}

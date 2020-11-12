@@ -1,0 +1,23 @@
+{% extends 'quotes/base.html' %}
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+    <div class="container text-center">
+{% if ticker %}
+    <h1>{{ ticker }}</h1>
+    </div>
+{% endif %}
+    {% if api %}
+        {% if api == 'Error...' %}
+            <h1>There was a problem with your ticker... Please try again</h1>
+    {% else %}
+            <h1>Name: {{ api.companyName }}</h1>
+            Price: {{ api.latestPrice }}<br>
+            Previous Close: {{ api.previousClose }}<br>
+            Market Cap: {{ api.marketCap }} <br>
+            YTD Change: {{ api.ytdChange }}<br>
+            52Wk High: {{ api.week52High }}<br>
+            52Wk Low: {{ api.week52Low }}
+        {% endif %}
+    {% endif %}
+{% endblock %}
